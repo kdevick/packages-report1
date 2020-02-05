@@ -23,18 +23,18 @@ trees %>%
   group_by(heightgroup) %>%
   ## by height group by calculate mean 
   summarize(avevol = mean(Volume))
-  ## if i wanted to do more after not by groups, then I would need to use group_ungroup()
+  ## if i wanted to do more after not by groups, then I would need to use ungroup()
 
 
 trees %>% 
-  ## only select columens Girth and Height
+  ## only select columns Girth and Height
   select(Girth, Height)
 
 
 trees %>% 
   ## create new heightgroup variable, 1 for trees >= 75, 0 otherwise
   mutate(heightgroup = as.numeric(Height >= 75)) %>%
-  ## count the numner is each group
+  ## count the number in each group
   count(heightgroup) %>%
   ## use the n column created by heightgroup and calc proportions with this column
   mutate(prop = n / sum(n))
